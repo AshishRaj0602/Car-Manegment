@@ -10,6 +10,7 @@ const CarList = ({filter}) => {
     const fetchCars = async () => {
       try {
         const response = await getFilteredCars(filter);
+        console.log("response",response)
         setCars(response);
       } catch (error) {
         console.error('Failed to fetch cars:', error.message);
@@ -17,7 +18,7 @@ const CarList = ({filter}) => {
     };
 
     fetchCars();
-  }, []);
+  }, [filter]);
 
   const handleDeleteSelectedCars = async () => {
     try {
@@ -26,7 +27,7 @@ const CarList = ({filter}) => {
       console.log('Cars deleted successfully:', response);
 
       // Remove the deleted cars from the state
-      const updatedCars = cars.filter((car) => !selectedCars.includes(car.id));
+      const updatedCars = cars.filter((car) => !selectedCars.includes(car._id));
       setCars(updatedCars);
 
       // Clear the selected cars array
@@ -38,6 +39,7 @@ const CarList = ({filter}) => {
 
   const handleCheckboxChange = (e, carId) => {
     const { checked } = e.target;
+    console.log(carId, checked)
 
     if (checked) {
       setSelectedCars([...selectedCars, carId]);
@@ -54,14 +56,14 @@ const CarList = ({filter}) => {
       </button>
       <ul>
         {cars.map((car) => (
-          <li key={car.id}>
+          <li key={car._id}>
             <input
               type="checkbox"
-              checked={selectedCars.includes(car.id)}
-              onChange={(e) => handleCheckboxChange(e, car.id)}
+              checked={selectedCars.includes(car._id)}
+              onChange={(e) => handleCheckboxChange(e, car._id)}
             />
             <span>{car.title}</span>
-            <button>Edit</button>
+            {/* <button>Edit</button> */}
           </li>
         ))}
       </ul>

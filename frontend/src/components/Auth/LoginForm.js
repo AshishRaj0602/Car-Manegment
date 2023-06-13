@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { login } from '../../api/userApi';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 const LoginForm = () => {
+  const Navigate=useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,15 +16,25 @@ const LoginForm = () => {
     try {
       // Call the login API with email and password
       const response = await login(email, password);
-
       // Handle successful login
       console.log('User logged in successfully:', response);
-
+      Swal.fire({
+        title: 'Success!',
+        text: 'Successfully logged in',
+        icon: 'success',
+      });
+      Navigate('/car-management');
+      
       // Clear form inputs
       setEmail('');
       setPassword('');
     } catch (error) {
       // Handle login error
+      Swal.fire({
+        title: 'Failed!',
+        text: 'User not found plz sign up',
+        icon: 'error',
+      });
       console.error('Login failed:', error.message);
     }
   };

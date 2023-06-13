@@ -2,6 +2,24 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000/api/users';
 
+export const signup = async (email, password) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/signup`, {email, password});
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
+export const login = async (email, password) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/login`, {email, password});
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error);
+  }
+};
+
 export const getUsers = async () => {
   try {
     const response = await axios.get(BASE_URL);

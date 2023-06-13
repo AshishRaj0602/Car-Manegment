@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { signup } from '../../api/userApi';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 
 const SignupForm = () => {
+  const Navigate=useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,7 +16,13 @@ const SignupForm = () => {
     try {
       // Call the signup API with email and password
       const response = await signup(email, password);
-
+      Swal.fire({
+        title: 'Success!',
+        text: 'Successfully Signed Up',
+        icon: 'success',
+      });
+      
+      Navigate('/car-management');
       // Handle successful signup
       console.log('User signed up successfully:', response);
 

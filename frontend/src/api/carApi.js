@@ -16,6 +16,9 @@ export const getAllCars = async () => {
 export const getFilteredCars = async (filters) => {
   try {
     const response = await axios.get(`${BASE_URL}`, { params: filters });
+    if(filters){
+      return response.data.filter((item) => item.color === filters.color && item.price<=filters.priceRange && item.mileage>=filters.mileageRange);
+    }
     return response.data;
   } catch (error) {
     throw new Error('Failed to fetch filtered cars');

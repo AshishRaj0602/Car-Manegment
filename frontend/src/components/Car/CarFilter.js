@@ -16,7 +16,6 @@ const CarFilter = ({ onFilter }) => {
     };
     
     
-
     // Pass the filter object to the parent component for handling the filter operation
     onFilter(filter);
   };
