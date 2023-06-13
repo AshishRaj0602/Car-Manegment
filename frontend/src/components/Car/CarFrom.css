@@ -1,0 +1,41 @@
+/* CarForm.css */
+
+.form-container {
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    width: auto;
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+  .list {
+    width: 10px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
